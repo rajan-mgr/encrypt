@@ -5,3 +5,8 @@ import
 
 #function delcaration
 def encrypt();
+    
+
+def decrypt();
+    
+
