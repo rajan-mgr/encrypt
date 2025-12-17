@@ -1,20 +1,17 @@
-#Workflow
-name: CI Demo
-#workflow trigger
-on: [push, pull_request, workflow_dispatch]
-#Jobs definition
+name: Basic CI Pipeline
+
+on: [push, pull_request]
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Simulate unit tests
-        run: echo "All tests passed!"
-
-      - name: Simulate build step
-        run: echo "Application built successfully"
-
-      - name: Final success message
-        run: echo "CI pipeline completed!"
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install pytest
+      - name: Run tests
+        run: pytest
